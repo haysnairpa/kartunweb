@@ -1,24 +1,45 @@
-import React from 'react'
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Who = () => {
   return (
-    <div >
+    <div>
       <section className="relative pt-20 pb-16 overflow-hidden bg-black sm:pt-60 sm:pb-20">
         <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between space-y-12 lg:space-y-0 lg:space-x-8">
             
             {/* Text Section */}
-            <div className="max-w-2xl lg:w-1/2 text-center lg:text-left">
-              <h1 className="mt-8 text-4xl font-semibold text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+            <div
+              className="max-w-2xl lg:w-1/2 text-center lg:text-left"
+            >
+              <motion.h1 
+                className="ext-3xl text-center font-bold leading-tight text-gray-200 sm:text-4xl xl:text-5xl font-pj"
+                initial={{ opacity: 0, x: -50}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{duration: 1, ease: 'easeOut'}}
+              >
                 People Inside
-              </h1>
-              <p className="mt-6 text-lg font-normal text-gray-300">
+              </motion.h1>
+              <motion.p 
+                className="mt-6 text-lg font-normal text-gray-300"
+                initial={{ opacity: 0, x: 50}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{duration: 1, ease: 'easeOut'}}  
+              >
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut delectus voluptatum officia ducimus a vero. Ducimus et soluta voluptas excepturi.
-              </p>
+              </motion.p>
             </div>
 
             {/* Image Section */}
-            <div className="relative lg:w-1/2 flex justify-center lg:justify-end">
+            <motion.div
+              className="relative lg:w-1/2 flex justify-center lg:justify-end"
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+            >
               <div className="relative w-full max-w-2xl">
                 <div className="absolute inset-0">
                   <svg
@@ -62,12 +83,12 @@ const Who = () => {
                   alt=""
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Who
+export default Who;
