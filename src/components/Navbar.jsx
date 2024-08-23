@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll"; // Mengimpor Link sebagai ScrollLink
 
 const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -88,19 +88,18 @@ const Navbar = () => {
           {/* Desktop Navigation Links */}
           <nav className="hidden space-x-10 md:flex md:items-center md:justify-center lg:space-x-12">
             {navLinks.map((link, i) => (
-              <Link
+              <motion.div
                 key={link.name}
-                to={link.to}
-                smooth={true}
-                duration={500}
                 variants={linkVariants}
                 custom={i}
                 initial="hidden"
                 animate="visible"
                 className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white cursor-pointer"
               >
+                <ScrollLink to={link.to} smooth={true} duration={500}>
                   {link.name}
-               </Link>
+                </ScrollLink>
+              </motion.div>
             ))}
           </nav>
         </div>
@@ -113,19 +112,18 @@ const Navbar = () => {
         >
           <div className="flex flex-col pt-8 pb-4 space-y-6">
             {navLinks.map((link, i) => (
-              <Link
-                key={link}
-                to={link.to}
-                smooth={true}
-                duration={500}
+              <motion.div
+                key={link.name}
                 variants={linkVariants}
                 custom={i}
                 initial="hidden"
                 animate={expanded ? "visible" : "hidden"}
                 className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white cursor-pointer"
               >
-                {link.name}
-              </Link>
+                <ScrollLink to={link.to} smooth={true} duration={500}>
+                  {link.name}
+                </ScrollLink>
+              </motion.div>
             ))}
           </div>
         </motion.nav>
