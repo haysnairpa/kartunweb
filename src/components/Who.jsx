@@ -13,7 +13,7 @@ const Who = () => {
               className="max-w-2xl lg:w-1/2 text-center lg:text-left"
             >
               <motion.h1 
-                className="ext-3xl text-center font-bold leading-tight text-gray-200 sm:text-4xl xl:text-5xl font-pj"
+                className="text-3xl text-center lg :text-start font-bold leading-tight text-gray-200 xl:text-5xl font-pj"
                 initial={{ opacity: 0, x: -50}}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

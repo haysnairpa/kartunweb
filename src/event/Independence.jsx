@@ -1,22 +1,50 @@
 import React, { useState } from "react";
-import heroImg from '../img/img5.jpg';
-import compImg from '../img/img6.jpg';
-import flagImg from '../img/img3.jpg';
+import { motion } from "framer-motion";
+import heroImg from "../img/img5.jpg";
+import compImg from "../img/img6.jpg";
+import flagImg from "../img/img3.jpg";
 
 const tabs = [
-  { name: 'Badminton', content: 'Connect your calendar and define your recording automations: channels, AI summary templates, and more.', img: compImg },
-  { name: 'Volly', content: 'Record and share your meetings effortlessly with our integrations.', img: compImg },
-  { name: 'Futsal', content: 'Integrate CRM tools to sync your customer data with meeting insights.', img: compImg },
-  { name: 'Table Tennis', content: 'Collaborate across teams by integrating with popular tools.', img: compImg },
-  { name: 'Karaoke', content: 'Automate your workflow with advanced integrations.', img: compImg },
+  { name: "Badminton", content: "A thrilling showdown of smashes and drops! Our badminton tournament saw players of all levels competing for the coveted championship title. From intense rallies to unexpected upsets, every match kept the crowd on the edge of their seats.", img: compImg },
+  { name: "Volleyball", content: "The volleyball tournament was a testament to the power of teamwork and athleticism. Spikes soared over the net, digs kept the rallies alive, and serves were aimed with precision. The energy on the court was contagious, and the crowd cheered on their favorite teams.", img: compImg },
+  { name: "Futsal", content: "The futsal pitch was a whirlwind of action as teams battled for possession and goals. With lightning-fast dribbles and powerful shots, players showcased their skills and teamwork. The final match was a nail-biter, with the winning goal scored in the dying seconds.", img: compImg },
+  { name: "Table Tennis", content: "The table tennis tables were the stage for a series of intense rallies. With lightning-fast reflexes and delicate touch, players showcased their mastery of the game. The tournament was a true test of skill and concentration.", img: compImg },
+  { name: "Karaoke", content: "The karaoke competition was a celebration of talent and individuality. Contestants belted out their favorite songs, from classic hits to modern pop. The judges had a tough time choosing the winners, as each performance was unique and entertaining.", img: compImg },
 ];
+
+const floatingAnimation = () => {
+  const yOffset = Math.random() * 10 + 5; // Random vertical offset between 5px and 15px
+  const rotateOffset = Math.random() * 2 - 1; // Random rotate between -1deg and 1deg
+  const scaleOffset = Math.random() * 0.02 + 0.98; // Random scale between 0.98 and 1.02
+
+  return {
+    y: [0, -yOffset, 0], // Random floating direction
+    rotate: [0, rotateOffset, -rotateOffset, 0], // Random rotation
+    scale: [1, scaleOffset, 1], // Random scaling effect
+  };
+};
 
 const Independence = () => {
   const title = localStorage.getItem("title");
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
+  const splitText = (text) =>
+    text.split("").map((char, index) => (
+      <motion.span
+        key={index}
+        initial={{
+          opacity: 0,
+          y: -10,
+        }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.05, delay: index * 0.05 }}
+      >
+        {char}
+      </motion.span>
+    ));
+
   return (
-    <div>
+    <div className="overflow-hidden">
       <div className="relative pt-48 pb-12 bg-black xl:pt-60 sm:pb-16 lg:pb-32 xl:pb-48 2xl:pb-56">
         <div className="absolute inset-0">
           <img
@@ -31,11 +59,11 @@ const Independence = () => {
             <div className="max-w-xl mx-auto text-center">
               <h1 className="tracking-tighter text-white">
                 <span className="font-serif italic font-normal text-6xl sm:text-8xl">
-                  {title}
+                  {splitText(title)}
                 </span>
               </h1>
               <p className="mt-5 font-sans text-base font-normal text-white text-opacity-70">
-                Indonesia Independence day 79 in 2024 that held in 40 Neighborhood, Babelan, Bahagia, Bekasi. Wanna see what we do? Scroll down!
+                {splitText("Indonesia Independence day 79 in 2024 that held in 40 Neighborhood, Babelan, Bahagia, Bekasi. Wanna see what we do? Scroll down!")}
               </p>
             </div>
           </div>
@@ -48,20 +76,18 @@ const Independence = () => {
             className="inline-flex items-center justify-center w-12 h-12 transition-all duration-200 rounded-full text-white hover:bg-white hover:text-black bg-black focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary focus:ring-offset-secondary"
             role="button"
           >
-            <svg
+            <motion.svg
               className="w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              initial={{ y: -10 }}
+              animate={{ y: 0 }}
+              transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.5 }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            </motion.svg>
           </a>
         </div>
       </div>
@@ -70,19 +96,39 @@ const Independence = () => {
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid items-center grid-cols-1 gap-y-12 lg:grid-cols-2 gap-x-16">
             <div>
-              <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+              <motion.h1
+                className="text-4xl font-normal text-white sm:text-5xl lg:text-6xl xl:text-7xl"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
                 Raising the Indonesian Flag
-              </h1>
-              <p className="mt-4 text-lg font-normal text-gray-400 sm:mt-8">
+              </motion.h1>
+              <motion.p
+                className="mt-4 text-lg font-normal text-gray-400 sm:mt-8"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
                 Of course, this is one of the mandatory things that must be carried out on Independence Day, with the young people as the flag-raising squad.
-              </p>
+              </motion.p>
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0">
+              <motion.div
+                className="absolute inset-0"
+                animate={floatingAnimation()}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  ease: "easeInOut",
+                }}
+              >
                 <svg
                   className="blur-3xl filter opacity-70"
-                  style={{ filter: 'blur(64px)' }}
+                  style={{ filter: "blur(64px)" }}
                   width="444"
                   height="536"
                   viewBox="0 0 444 536"
@@ -100,13 +146,17 @@ const Independence = () => {
                     </linearGradient>
                   </defs>
                 </svg>
-              </div>
+              </motion.div>
 
-              <div className="absolute inset-0">
-                <img className="object-cover w-full h-full opacity-50" src="https://landingfoliocom.imgix.net/store/collection/dusk/images/noise.png" alt="" />
-              </div>
-
-              <img className="relative w-full max-w-md mx-auto rounded-lg opacity-85" src={flagImg} alt="Flag Raising" />
+              <motion.img
+                className="relative w-full max-w-md mx-auto rounded-lg opacity-85"
+                src={flagImg}
+                alt="Flag Raising"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
+              />
             </div>
           </div>
         </div>
@@ -115,32 +165,47 @@ const Independence = () => {
       <section className="bg-black text-white p-8">
         <h2 className="text-4xl font-normal text-center">Competition</h2>
         <p className="text-center text-lg text-gray-400 mb-8">
-          Don't forget to do some competitions to keep up the spirit of struggle.
+          Don't forget to participate in the race so that Independence Day feels even more lively. Which race will you participate in? Let's see the list!
         </p>
-
-        <div className="flex justify-center mb-8 space-x-4 flex-wrap">
-          {tabs.map((tab, index) => (
-            <button
-              key={index}
-              className={`px-4 py-2 rounded-full font-semibold transition-colors duration-300 ${
-                activeTab.name === tab.name ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white' : 'bg-gray-800 text-gray-400'
+        <div className="flex justify-center space-x-4 mb-8">
+          {tabs.map((tab) => (
+            <motion.button
+              key={tab.name}
+              className={`px-4 py-2 rounded ${
+                activeTab.name === tab.name ? "bg-purple-500 text-white" : "bg-gray-700 text-gray-400"
               }`}
               onClick={() => setActiveTab(tab)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               {tab.name}
-            </button>
+            </motion.button>
           ))}
         </div>
-
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="flex-1 p-4">
-            <h3 className="text-2xl font-bold mb-4">{activeTab.name}</h3>
-            <p className="mb-4">{activeTab.content}</p>
-          </div>
-          <div className="flex-1">
-            <img src={activeTab.img} alt={activeTab.name} className="rounded-lg shadow-lg w-full md:max-w-xs mx-auto" />
-          </div>
-        </div>
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          key={activeTab.name}
+        >
+          <motion.img
+            src={activeTab.img}
+            alt={activeTab.name}
+            className="mx-auto mb-4 rounded-lg w-full lg:max-w-lg"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+          <motion.p
+            className="text-center lg:text-left lg:ml-4"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {activeTab.content}
+          </motion.p>
+        </motion.div>
       </section>
     </div>
   );

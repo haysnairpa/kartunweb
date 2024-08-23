@@ -31,24 +31,7 @@ const App = () => {
                   <section id="feature">
                     <Feature />
                   </section>
-                  <motion.h2
-                    className="text-3xl text-center font-bold leading-tight text-gray-900 sm:text-4xl xl:text-5xl font-pj"
-                    initial={{ opacity: 0, y: -50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
-                  >
-                    Our Activities
-                  </motion.h2>
-                  <motion.p
-                    className="mt-4 text-base text-center leading-7 text-gray-600 sm:mt-8 font-pj"
-                    initial={{ opacity: 0, y: -50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 2, ease: "easeOut" }}
-                  >
-                    See out activities in the last year
-                  </motion.p>
+                  
                   <section id="activities">
                     <Tab />
                   </section>

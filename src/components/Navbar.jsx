@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="py-4 bg-black sm:py-6">
+    <header className="sticky top-0 z-50 bg-black sm:py-6 py-4 shadow-md">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo Animation */}
@@ -44,7 +44,7 @@ const Navbar = () => {
               <img
                 className="w-auto h-9"
                 src="https://landingfoliocom.imgix.net/store/collection/dusk/images/logo.svg"
-                alt=""
+                alt="Logo"
               />
             </a>
           </motion.div>

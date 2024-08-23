@@ -22,7 +22,7 @@ const Feature = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: 1.7, ease: 'easeOut' }}
+                transition={{ duration: 1, delay: 1.3, ease: 'easeOut' }}
             >Lorem ipsum dolor sit amet, consectetur adipis elit</motion.p>
           </div>
 
@@ -71,7 +71,7 @@ const Feature = () => {
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.5, delay: index * 1, ease: 'easeOut' }}
+                transition={{ duration: 1.3, delay: index * 1, ease: 'easeOut' }}
               >
                 {item.svg}
                 <h3 className="mt-12 text-xl font-bold text-gray-900 font-pj">{item.title}</h3>

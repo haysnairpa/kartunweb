@@ -1,11 +1,12 @@
 import React from 'react';
+import kartar from '../assets/2024.jpg'
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
   return (
     <div>
-      <section className="relative pt-12 overflow-hidden bg-black sm:pt-16">
+      <section className="relative pt-12 overflow-hidden bg-black sm:pt-16 z-10">
         <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-4xl mx-auto text-center">
             {/* Animasi subtitle dengan efek mengetik berulang */}
@@ -143,8 +144,8 @@ const Hero = () => {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <img
-                className="relative w-full max-w-5xl mx-auto"
-                src="https://landingfoliocom.imgix.net/store/collection/dusk/images/hero/4/dashboard-mockup.png"
+                className="relative w-full max-w-5xl mx-auto rounded-lg opacity-75"
+                src={kartar}
                 alt=""
               />
             </motion.div>

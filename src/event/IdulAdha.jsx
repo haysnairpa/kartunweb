@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import heroImg from '../img/img5.jpg';
 import qurbanImg from '../assets/test.png'; // Replace with an appropriate image for Qurban
 import distributionImg from '../assets/lebaran.jpg'; // Replace with an appropriate image for meat distribution
@@ -6,38 +7,88 @@ import distributionImg from '../assets/lebaran.jpg'; // Replace with an appropri
 const IdulAdha = () => {
   const title = localStorage.getItem("title");
 
+  // Variants for different animations
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.8 } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const splitText = (text) =>
+    text.split("").map((char, index) => (
+      <motion.span
+        key={index}
+        initial={{
+          opacity: 0,
+          y: -10,
+        }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.05, delay: index * 0.05 }}
+      >
+        {char}
+      </motion.span>
+    ));
+
   return (
     <div>
-      <div className="relative pt-48 pb-12 bg-black xl:pt-60 sm:pb-16 lg:pb-32 xl:pb-48 2xl:pb-56">
+      <motion.div
+        className="relative pt-48 pb-12 bg-black xl:pt-60 sm:pb-16 lg:pb-32 xl:pb-48 2xl:pb-56"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
         <div className="absolute inset-0">
-          <img
+          <motion.img
             className="object-cover w-full h-full opacity-60"
             src={heroImg}
             alt="Hero"
+            variants={fadeIn}
           />
         </div>
 
         <div className="relative">
           <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
             <div className="max-w-xl mx-auto text-center">
-              <h1 className="tracking-tighter text-white">
+              <motion.h1
+                className="tracking-tighter text-white"
+                variants={fadeInUp}
+              >
                 <span className="font-serif italic font-normal text-6xl sm:text-8xl">
-                  {title}
+                  {splitText(title)}
                 </span>
-              </h1>
-              <p className="mt-5 font-sans text-base font-normal text-white text-opacity-70">
-                Commemorating Idul Adha 1445 H in 40 Neighborhood, Babelan, Bahagia, Bekasi. Learn about our activities below.
-              </p>
+              </motion.h1>
+              <motion.p
+                className="mt-5 font-sans text-base font-normal text-white text-opacity-70"
+                variants={fadeInUp}
+              >
+                {splitText('Commemorating Idul Adha 1445 H in 40 Neighborhood, Babelan, Bahagia, Bekasi. Learn about our activities below.')}
+              </motion.p>
             </div>
           </div>
         </div>
 
         <div className="absolute hidden transform -translate-x-1/2 lg:bottom-8 xl:bottom-12 left-1/2 lg:block">
-          <a
+          <motion.a
             href="#"
             title="Scroll Down"
             className="inline-flex items-center justify-center w-12 h-12 transition-all duration-200 rounded-full text-white hover:bg-white hover:text-black bg-black focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary focus:ring-offset-secondary"
             role="button"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <svg
               className="w-5 h-5"
@@ -53,23 +104,28 @@ const IdulAdha = () => {
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-          </a>
+          </motion.a>
         </div>
-      </div>
+      </motion.div>
 
       <section className="relative py-12 bg-black sm:pb-16 lg:pb-20 xl:pb-24">
-        <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <motion.div
+          className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
           <div className="grid items-center grid-cols-1 gap-y-12 lg:grid-cols-2 gap-x-16">
-            <div>
+            <motion.div variants={fadeInUp}>
               <h1 className="text-4xl font-normal text-white sm:text-5xl lg:text-6xl xl:text-7xl">
                 Animal Sacrifice Ceremony
               </h1>
               <p className="mt-4 text-lg font-normal text-gray-400 sm:mt-8">
                 As part of our Idul Adha celebrations, we will perform the Qurban ritual, sacrificing livestock as an act of worship and gratitude.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="relative">
+            <motion.div className="relative" variants={fadeIn}>
               <div className="absolute inset-0">
                 <svg
                   className="blur-3xl filter opacity-70"
@@ -97,28 +153,50 @@ const IdulAdha = () => {
                 <img className="object-cover w-full h-full opacity-50" src="https://landingfoliocom.imgix.net/store/collection/dusk/images/noise.png" alt="" />
               </div>
 
-              <img className="relative w-full max-w-md mx-auto rounded-lg opacity-85" src={qurbanImg} alt="Qurban" />
-            </div>
+              <motion.img
+                className="relative w-full max-w-md mx-auto rounded-lg opacity-85"
+                src={qurbanImg}
+                alt="Qurban"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="bg-black text-white p-8">
-        <h2 className="text-4xl font-normal text-center">Meat Distribution</h2>
-        <p className="text-center text-lg text-gray-400 mb-8">
+        <motion.h2
+          className="text-4xl font-normal text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          Meat Distribution
+        </motion.h2>
+        <motion.p
+          className="text-center text-lg text-gray-400 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+        >
           After the Qurban, the meat is distributed to those in need, symbolizing our commitment to community and charity.
-        </p>
+        </motion.p>
 
         <div className="flex flex-col md:flex-row items-center">
-          <div className="flex-1 p-4">
-            <h3 className="text-2xl font-bold mb-4">Sharing with the Community</h3>
-            <p className="mb-4">
-              The meat from the sacrificed animals is carefully divided and distributed to the needy, ensuring everyone can share in the blessings of Idul Adha.
-            </p>
-          </div>
-          <div className="flex-1">
-            <img src={distributionImg} alt="Meat Distribution" className="rounded-lg shadow-lg w-full md:max-w-xs mx-auto" />
-          </div>
+          
+          <motion.div
+            className="flex-1"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img
+              src={distributionImg}
+              alt="Meat Distribution"
+              className="rounded-lg shadow-lg w-full md:max-w-xs mx-auto"
+            />
+          </motion.div>
         </div>
       </section>
     </div>
